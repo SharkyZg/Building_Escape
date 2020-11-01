@@ -15,31 +15,32 @@ class BUILDING_ESCAPE_API UOpenDoor : public UActorComponent
 public:
 	// Sets default values for this component's properties
 	UOpenDoor();
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
+	void OpenDoor(float DeltaTime);
+	void CloseDoor(float DeltaTime);
+	float TotalMassOfActors() const;
+	void FindAudioComponent();
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
-	void OpenDoor(float DeltaTime);
-	void CloseDoor(float DeltaTime);
-
 private:
 	void LogRotationAndYaw();
 	float InitialYaw;
 	float CurrentYaw;
+	bool OpenDoorSoundPlayed = false;
+	bool CloseDoorSoundPlayed = false;
 
 	UPROPERTY(EditAnywhere)
 	float TargetYaw = 90.f;
 
 	UPROPERTY(EditAnywhere)
-	ATriggerVolume* PressurePlate;
+	ATriggerVolume *PressurePlate = nullptr;
 
 	UPROPERTY(EditAnywhere)
-	AActor* ActorThatOpens;
+	float RequiredMassToOpenDoors = 50.f;
 
-
-
+	UPROPERTY()
+	UAudioComponent* AudioComponent = nullptr;
 };

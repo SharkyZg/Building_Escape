@@ -26,8 +26,15 @@ protected:
 
 private:
 	float Reach = 100.f;
+
+	UPROPERTY()
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
+	UPROPERTY()
 	UInputComponent* InputComponent = nullptr;
+
+	FVector PlayerViewPointLocation;
+	FRotator PlayerViewPointRotation;
+	FVector LineTraceEnd;
 
 	void Grab();
 	void Release();
