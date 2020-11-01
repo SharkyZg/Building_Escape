@@ -1,8 +1,8 @@
 // Marko Sarkanj 2020
 
+#include "OpenDoor.h"
 #include "Engine/World.h"
 #include "GameFramework/PlayerController.h"
-#include "OpenDoor.h"
 
 #include "GameFramework/Actor.h"
 
@@ -50,7 +50,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 void UOpenDoor::OpenDoor(float DeltaTime)
 {
 
-	LogRotationAndYaw();
+	// LogRotationAndYaw();
 
 	CurrentYaw = FMath::FInterpTo(CurrentYaw, TargetYaw, DeltaTime, 1);
 	FRotator DoorRotation = GetOwner()->GetActorRotation();
@@ -61,7 +61,7 @@ void UOpenDoor::OpenDoor(float DeltaTime)
 void UOpenDoor::CloseDoor(float DeltaTime)
 {
 
-	LogRotationAndYaw();
+	// LogRotationAndYaw();
 
 	CurrentYaw = FMath::FInterpTo(CurrentYaw, InitialYaw, DeltaTime, 1);
 	FRotator DoorRotation = GetOwner()->GetActorRotation();
